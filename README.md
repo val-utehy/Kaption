@@ -94,7 +94,7 @@ Each caption is printed as it is generated, and all results are saved to `output
 To evaluate the checkpoint on the Flickr8k test split (the script name contains a space, so keep the quotes):
 
 ```bash
-python "eval_flickr8k .py" \
+python "eval.py" \
   --config configs/kaption_flickr8k.yaml \
   --checkpoint output/KAPTION_flickr8k/checkpoint_best.pth \
   --split test --output_dir output/eval_flickr8k
