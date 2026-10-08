@@ -18,27 +18,8 @@ def _init_anchor_grid(num_latents):
 class SpatiallyBiasedCrossAttention(nn.Module):
     """
     Spatially-biased multi-head cross-attention.
-
-    Cross-attention where each latent has a learned 2D anchor position; attention
-    logits get an additive `-gamma * dist(anchor, patch_pos)^2` bias so latents
-    are biased toward distinct image regions instead of relying purely on
-    content similarity (which tends to make many latents converge on the same
-    salient region). The CLS token (index 0 of visual_features) gets no spatial
-    bias since it carries global, not localized, information.
-
-    gamma = softplus(log_gamma), so the bias is always a penalty, never a reward.
-    `gamma_init` is the *initial* value of log_gamma and sets the locality scale
-    the prior starts at: gamma = 1/(2*sigma^2), i.e. sigma = 1/sqrt(2*gamma) in
-    normalised image units.
-
         gamma_init = -6.0 -> gamma 0.0025, sigma 14.2  (flat: no prior at all)
         gamma_init =  8.0 -> gamma 8.0,    sigma 0.25  (~the 0.2 anchor-grid pitch)
-
-    NOTE: -6.0 leaves log_gamma in a near-flat region of its own parameterisation
-    (d gamma/d log_gamma = sigmoid(-6) ~ 0.0025, i.e. ~200x smaller than at 0), so
-    it cannot escape during short training runs and the whole spatial mechanism
-    stays inert. It is kept as the default only so earlier runs reproduce; new
-    configs should set gamma_init explicitly.
     """
 
     def __init__(self, d_model, vision_width, num_heads, num_patches_side,
