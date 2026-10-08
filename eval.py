@@ -83,10 +83,10 @@ def main(args, config):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--checkpoint', default='/home/kienngyuen/PycharmProjects/Multimodel-research/kaption-version-1/output/KAPTION_flickr8k/checkpoint_best.pth', help='path to finetuned kaption checkpoint')
-    parser.add_argument('--config', default='/home/kiennguyen/source/multimodel/kaption-version-1/configs/kaption_flickr8k.yaml')
+    parser.add_argument('--checkpoint', default='/output/KAPTION_flickr8k/best.pth', help='path to finetuned kaption checkpoint')
+    parser.add_argument('--config', default='/configs/kaption_flickr8k.yaml')
     parser.add_argument('--split', default='test', choices=['val', 'test'])
-    parser.add_argument('--output_dir', default='./output/kaption_flickr8k')
+    parser.add_argument('--output_dir', default='/output/kaption_flickr8k')
     
     args = parser.parse_args()
 
