@@ -1,0 +1,40 @@
+image_root: '/datasets/flickr8k_dataset'
+ann_root: '/datasets/flickr8k_text'
+
+# BLIP pretrained weights — image encoder + caption decoder base weights are reused
+# latent_resampler and rotary_emb are randomly initialised and trained from scratch
+pretrained: 'https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_caption_capfilt_large.pth'
+
+vit: 'base'
+vit_grad_ckpt: False
+vit_ckpt_layer: 0
+
+# Latent resampler
+num_latent_tokens: 32
+mot_num_layers: 2 # number of latent cross-attention layers
+
+gamma_init: 8.0
+anchor_lr: 1.0e-3
+gamma_lr: 1.0e-2
+
+# RoPE
+use_rope: True
+
+batch_size: 32
+init_lr: 1.0e-5
+weight_decay: 0.05
+min_lr: 0
+max_epoch: 100
+warmup_epochs: 10
+early_stopping_patience: 10  # stop if val CIDEr does not improve for N epochs
+
+# freeze_vit_epochs: -1  → never freeze (train image_encoder from epoch 0)
+# freeze_vit_epochs:  0  → freeze forever (image_encoder never trains)
+# freeze_vit_epochs:  N  → freeze for epoch 0..N-1, unfreeze from epoch N onward
+freeze_vit_epochs: 0
+
+image_size: 384
+max_length: 20 #30
+min_length: 5
+num_beams: 3
+prompt: 'a picture of '

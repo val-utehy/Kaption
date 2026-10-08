@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+
+# Model checkpoints
+*.pth
+*.pt
+*.ckpt
+*.onnx
+
+# Training outputs
+output/
+runs/
+
+# Logs
+logs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# mkdocs
+site/
+mkdocs.yml
+
+# details architecture 
+docs/
+paper/
+site/
