@@ -1,8 +1,11 @@
 # KAPTION
 
 ## Overview
-
-KAPTION (version 1) is an image captioning model built on the BLIP captioning decoder. It inserts a latent resampler between the image encoder and the caption decoder and replaces the decoder's absolute position embeddings with rotary position embeddings (RoPE):
+<p align="center">
+  <img src="figure/architecture.png" width="90%"><br>
+  <b>Kaption Architecture</b>
+</p>
+KAPTION is an image captioning model built on the BLIP captioning decoder. It inserts a latent resampler between the image encoder and the caption decoder and replaces the decoder's absolute position embeddings with rotary position embeddings (RoPE).
 
 ```text
 image_encoder (ViT-B) → latent_resampler (32 latent tokens) → caption_decoder (BERT + RoPE)
